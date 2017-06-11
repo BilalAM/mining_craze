@@ -19,7 +19,9 @@ public class IOUtility {
 	private static double[] upperPoints = new double[] {};
 	private static double[] lowerPoints = new double[] {};
 
-	public static List<Double> getDistances() throws Exception {
+	
+	// Main KNN ENGINE
+	private static List<Double> getDistances() throws Exception {
 		List<String> fileLines = Files.readAllLines(filePath);
 		String lastLine = fileLines.get(fileLines.size()-1);
 
@@ -34,7 +36,10 @@ public class IOUtility {
 		}
 		return distances;
 	}
-
+	
+	
+	
+	
 	private static String[] processString(String s) {
 		String[] splittedText = s.split(",");
 		return splittedText;
