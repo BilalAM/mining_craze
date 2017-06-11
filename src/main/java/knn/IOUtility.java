@@ -12,15 +12,25 @@ import java.util.List;
 public class IOUtility {
 
 	private static final Path filePath = Paths.get("/mining_craze/datasets/knn_dataset.txt");
-	private static List<String> fileLines = new ArrayList<String>();
-
+	private static List<Double> distances = new ArrayList<Double>();
+	private static double[] upperPoints = new double[]{};
+	private static double[] lowerPoints = new double[]{};
+	
 	
 
-	
+	private List<Double> getDistances() throws Exception{
+		List<String> fileLines = Files.readAllLines(filePath);
+		
+		return distances;
+		
+		
+		
+	}
 	
 	
 
 	public static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
+		
 		double result = 0;
 		if (upperPoints.length == lowerPoints.length) {
 			for (int i = 0; i < upperPoints.length; i++) {
