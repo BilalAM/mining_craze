@@ -8,22 +8,34 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /* File IO Utility Class */
 public class IOUtility {
 
-	
-	// TODO HAVE TO CHANGE THE PATH 
+	// TODO HAVE TO CHANGE THE PATH
 	private static final Path filePath = Paths.get("/home/bilalam/git/mining_craze/datasets/knn_dataset");
 	private static List<Double> distances = new ArrayList<Double>();
 	private static double[] upperPoints = new double[] {};
 	private static double[] lowerPoints = new double[] {};
 
-	
+	/* Gets The Smallest n Number of calculated distances */
+	public List<Double> knnIt(int neighbours) throws Exception {
+		Stream<Double> shortestNeighbours = getDistances().stream().sorted().limit(neighbours);
+		return shortestNeighbours.collect(Collectors.toList());
+	}
+
+	private static String[] processString(String s) {
+		String[] splittedText = s.split(",");
+		return splittedText;
+	}
+
 	// Main KNN ENGINE
 	private static List<Double> getDistances() throws Exception {
 		List<String> fileLines = Files.readAllLines(filePath);
-		String lastLine = fileLines.get(fileLines.size()-1);
+		String lastLine = fileLines.get(fileLines.size() - 1);
 		for (String s : fileLines) {
 			String[] a = processString(s);
 			String[] b = processString(lastLine);
@@ -31,15 +43,6 @@ public class IOUtility {
 					Arrays.stream(b).mapToDouble(Double::parseDouble).toArray()));
 		}
 		return distances;
-	}
-	
-	
-	
-	
-	
-	private static String[] processString(String s) {
-		String[] splittedText = s.split(",");
-		return splittedText;
 	}
 
 	private static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
