@@ -19,7 +19,9 @@ public class IOUtility {
 	
 	
 	
-	
+	public void foo(){
+		
+	}
 	
 	public static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
 		double result = 0;
