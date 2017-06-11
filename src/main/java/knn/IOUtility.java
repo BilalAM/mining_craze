@@ -6,31 +6,40 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /* File IO Utility Class */
 public class IOUtility {
 
-	private static final Path filePath = Paths.get("/mining_craze/datasets/knn_dataset.txt");
+	private static final Path filePath = Paths.get("/home/bilalam/git/mining_craze/datasets/knn_dataset");
 	private static List<Double> distances = new ArrayList<Double>();
-	private static double[] upperPoints = new double[]{};
-	private static double[] lowerPoints = new double[]{};
-	
-	
+	private static double[] upperPoints = new double[] {};
+	private static double[] lowerPoints = new double[] {};
 
-	private List<Double> getDistances() throws Exception{
+	public static List<Double> getDistances() throws Exception {
 		List<String> fileLines = Files.readAllLines(filePath);
-		
-		return distances;
-		
-		
-		
-	}
-	
-	
+		String lastLine = fileLines.get(fileLines.size()-1);
 
-	public static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
-		
+		try (BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile()))) {
+
+		}
+		for (String s : fileLines) {
+			String[] a = processString(s);
+			String[] b = processString(lastLine);
+			distances.add(arbitraryEucledianDistance(Arrays.stream(a).mapToDouble(Double::parseDouble).toArray(),
+					Arrays.stream(b).mapToDouble(Double::parseDouble).toArray()));
+		}
+		return distances;
+	}
+
+	private static String[] processString(String s) {
+		String[] splittedText = s.split(",");
+		return splittedText;
+	}
+
+	private static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
+
 		double result = 0;
 		if (upperPoints.length == lowerPoints.length) {
 			for (int i = 0; i < upperPoints.length; i++) {
@@ -40,8 +49,8 @@ public class IOUtility {
 			System.out.println("group points are not equal");
 			return 0.0;
 		}
-		
-		//taking root of the whole product at the end to save processing
+
+		// taking root of the whole product at the end to save processing
 		return Math.sqrt(result);
 	}
 
