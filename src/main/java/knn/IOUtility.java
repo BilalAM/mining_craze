@@ -24,10 +24,6 @@ public class IOUtility {
 	private static List<Double> getDistances() throws Exception {
 		List<String> fileLines = Files.readAllLines(filePath);
 		String lastLine = fileLines.get(fileLines.size()-1);
-
-		try (BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile()))) {
-
-		}
 		for (String s : fileLines) {
 			String[] a = processString(s);
 			String[] b = processString(lastLine);
@@ -36,6 +32,7 @@ public class IOUtility {
 		}
 		return distances;
 	}
+	
 	
 	
 	
