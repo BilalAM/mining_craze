@@ -34,9 +34,10 @@ public class IOUtility {
 
 	// Main KNN ENGINE
 	private static List<Double> getDistances() throws Exception {
+
 		List<String> fileLines = Files.readAllLines(filePath);
 		String lastLine = fileLines.get(fileLines.size() - 1);
-		for (String s : fileLines) {
+		for (String s : fileLines.subList(0, fileLines.size() - 2)) {
 			String[] a = processString(s);
 			String[] b = processString(lastLine);
 			distances.add(arbitraryEucledianDistance(Arrays.stream(a).mapToDouble(Double::parseDouble).toArray(),
