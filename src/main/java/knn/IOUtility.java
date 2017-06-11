@@ -19,10 +19,7 @@ public class IOUtility {
 	
 	
 	
-	public void foo(){
-		
-	}
-	
+
 	public static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
 		double result = 0;
 		if (upperPoints.length == lowerPoints.length) {
@@ -33,6 +30,8 @@ public class IOUtility {
 			System.out.println("group points are not equal");
 			return 0.0;
 		}
+		
+		//taking root of the whole product at the end to save processing
 		return Math.sqrt(result);
 	}
 

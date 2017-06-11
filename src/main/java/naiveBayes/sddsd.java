@@ -1,4 +1,4 @@
-package sample;
+package naiveBayes;
 
 public class sddsd {
 
