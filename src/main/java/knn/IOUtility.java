@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,23 +24,23 @@ public class IOUtility {
 	private static double[] lowerPoints = new double[] {};
 
 	/* Gets The Smallest n Number of calculated distances */
-	public List<Double> knnIt(int neighbours) throws Exception {
-		Stream<Double> shortestNeighbours = getDistances().stream().sorted().limit(neighbours);
+	public List<Double> knnIt(int neighbours, int columnToPredict) throws Exception {
+		Stream<Double> shortestNeighbours = getDistances(columnToPredict).stream().limit(neighbours);
 		return shortestNeighbours.collect(Collectors.toList());
 	}
 
-	private static String[] processString(String s) {
-		String[] splittedText = s.split(",");
-		return splittedText;
+	private static String[] processString(String s, int columnToPredict) {
+		List<String> splittedString = Arrays.asList(s.split(",")).subList(0, columnToPredict-1);
+		return splittedString.toArray(new String[0]);
 	}
 
 	// Main KNN ENGINE
-	private static List<Double> getDistances() throws Exception {
+	private static List<Double> getDistances(int columnToPredict) throws Exception {
 		List<String> fileLines = Files.readAllLines(filePath);
 		String lastLine = fileLines.get(fileLines.size() - 1);
-		for (String s : fileLines.subList(0, fileLines.size() - 2)) {
-			String[] a = processString(s);
-			String[] b = processString(lastLine);
+		for (String s : fileLines.subList(0, fileLines.size()-1)) {
+			String[] a = processString(s, columnToPredict);
+			String[] b = processString(lastLine, columnToPredict);
 			distances.add(arbitraryEucledianDistance(Arrays.stream(a).mapToDouble(Double::parseDouble).toArray(),
 					Arrays.stream(b).mapToDouble(Double::parseDouble).toArray()));
 		}
