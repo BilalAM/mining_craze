@@ -1,6 +1,5 @@
 package knn;
 
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,18 +11,12 @@ import java.util.stream.Collectors;
 /* File IO Utility Class */
 public class IOUtility {
 
-	
 	private static final Path filePath = Paths.get("datasets/knn_dataset");
 	private static List<Double> distances = new ArrayList<Double>();
 
-
 	/* Gets The Smallest n Number of calculated distances */
 	public List<Double> knnIt(int neighbours, int columnToPredict) throws Exception {
-		// Stream<Double> shortestNeighbours =
-		// getDistances(columnToPredict).stream().limit(neighbours);
-		// return shortestNeighbours.collect(Collectors.toList());
-
-		return getDistances(columnToPredict).stream().limit(neighbours).collect(Collectors.toList());
+		return getDistances(columnToPredict).stream().sorted().limit(neighbours).collect(Collectors.toList());
 	}
 
 	private static String[] processString(String s, int columnToPredict) {
