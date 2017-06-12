@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 /* File IO Utility Class */
 public class IOUtility {
 
-	// TODO HAVE TO CHANGE THE PATH
-	private static final Path filePath = Paths.get("/home/bilalam/git/mining_craze/datasets/knn_dataset");
+	
+	private static final Path filePath = Paths.get("datasets/knn_dataset");
 	private static List<Double> distances = new ArrayList<Double>();
 
 
