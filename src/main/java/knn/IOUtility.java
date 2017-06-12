@@ -58,4 +58,12 @@ public class IOUtility {
 	private static double doublePointsProduct(double x1, double x2) {
 		return (Math.pow(((x1 - x2)), 2));
 	}
+
+	public static double averageOfDistances(double... points) {
+		double product = 0.0;
+		for (double d : points) {
+			product += (d / points.length);
+		}
+		return product;
+	}
 }
