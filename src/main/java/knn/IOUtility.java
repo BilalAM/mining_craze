@@ -25,13 +25,17 @@ public class IOUtility {
 
 	/* Gets The Smallest n Number of calculated distances */
 	public List<Double> knnIt(int neighbours, int columnToPredict) throws Exception {
-		Stream<Double> shortestNeighbours = getDistances(columnToPredict).stream().limit(neighbours);
-		return shortestNeighbours.collect(Collectors.toList());
+		// Stream<Double> shortestNeighbours =
+		// getDistances(columnToPredict).stream().limit(neighbours);
+		// return shortestNeighbours.collect(Collectors.toList());
+
+		return getDistances(columnToPredict).stream().limit(neighbours).collect(Collectors.toList());
 	}
 
 	private static String[] processString(String s, int columnToPredict) {
-		//split the columns BUT dont split the one we need to predict the value (The "classification" column)
-		List<String> splittedString = Arrays.asList(s.split(",")).subList(0, columnToPredict-1);
+		// split the columns BUT dont split the one we need to predict the value
+		// (The "classification" column)
+		List<String> splittedString = Arrays.asList(s.split(",")).subList(0, columnToPredict - 1);
 		return splittedString.toArray(new String[0]);
 	}
 
@@ -39,7 +43,7 @@ public class IOUtility {
 	private static List<Double> getDistances(int columnToPredict) throws Exception {
 		List<String> fileLines = Files.readAllLines(filePath);
 		String lastLine = fileLines.get(fileLines.size() - 1);
-		for (String s : fileLines.subList(0, fileLines.size()-1)) {
+		for (String s : fileLines.subList(0, fileLines.size() - 1)) {
 			String[] a = processString(s, columnToPredict);
 			String[] b = processString(lastLine, columnToPredict);
 			distances.add(arbitraryEucledianDistance(Arrays.stream(a).mapToDouble(Double::parseDouble).toArray(),
