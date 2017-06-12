@@ -30,6 +30,7 @@ public class IOUtility {
 	}
 
 	private static String[] processString(String s, int columnToPredict) {
+		//split the columns BUT dont split the one we need to predict the value (The "classification" column)
 		List<String> splittedString = Arrays.asList(s.split(",")).subList(0, columnToPredict-1);
 		return splittedString.toArray(new String[0]);
 	}
