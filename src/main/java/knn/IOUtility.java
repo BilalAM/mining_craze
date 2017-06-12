@@ -1,18 +1,13 @@
 package knn;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /* File IO Utility Class */
 public class IOUtility {
@@ -20,8 +15,7 @@ public class IOUtility {
 	// TODO HAVE TO CHANGE THE PATH
 	private static final Path filePath = Paths.get("/home/bilalam/git/mining_craze/datasets/knn_dataset");
 	private static List<Double> distances = new ArrayList<Double>();
-	private static double[] upperPoints = new double[] {};
-	private static double[] lowerPoints = new double[] {};
+
 
 	/* Gets The Smallest n Number of calculated distances */
 	public List<Double> knnIt(int neighbours, int columnToPredict) throws Exception {
