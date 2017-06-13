@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +25,7 @@ public class IOUtility {
 	}
 
 	// Main KNN ENGINE
-	public static List<Double> getDistances(int n, int columnToPredict) throws Exception {
+	public static List<String> getDistances(int n, int columnToPredict) throws Exception {
 
 		List<String> fileLines = Files.readAllLines(filePath);
 		String lastLine = fileLines.get(fileLines.size() - 1);
@@ -37,7 +39,16 @@ public class IOUtility {
 			distances.add(result);
 			distanceAppendedLines.add(s + "," + result);
 		}
-		return distances.stream().sorted().limit(n).collect(Collectors.toList());
+		/**/
+		distanceAppendedLines.sort(new Comparator<String>() {
+			public int compare(String o1, String o2) {
+				return Double.valueOf(Arrays.asList(o1.split(",")).get(columnToPredict))
+						.compareTo(Double.valueOf(Arrays.asList(o2.split(",")).get(columnToPredict)));
+			};
+		});
+
+		return distanceAppendedLines;
+
 	}
 
 	private static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
