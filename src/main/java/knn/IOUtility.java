@@ -13,11 +13,7 @@ public class IOUtility {
 
 	private static final Path filePath = Paths.get("datasets/knn_dataset");
 	private static List<Double> distances = new ArrayList<Double>();
-
-	/* Gets The Smallest n Number of calculated distances */
-	public List<Double> knnIt(int neighbours, int columnToPredict) throws Exception {
-		return getDistances(columnToPredict).stream().sorted().limit(neighbours).collect(Collectors.toList());
-	}
+	private static List<String> distanceAppendedLines = new ArrayList<String>();
 
 	private static String[] processString(String s, int columnToPredict) {
 		// split the columns BUT dont split the one we need to predict the value
@@ -27,16 +23,21 @@ public class IOUtility {
 	}
 
 	// Main KNN ENGINE
-	private static List<Double> getDistances(int columnToPredict) throws Exception {
+	public static List<Double> getDistances(int n, int columnToPredict) throws Exception {
+
 		List<String> fileLines = Files.readAllLines(filePath);
 		String lastLine = fileLines.get(fileLines.size() - 1);
 		for (String s : fileLines.subList(0, fileLines.size() - 1)) {
+			double result = 0;
+
 			String[] a = processString(s, columnToPredict);
 			String[] b = processString(lastLine, columnToPredict);
-			distances.add(arbitraryEucledianDistance(Arrays.stream(a).mapToDouble(Double::parseDouble).toArray(),
-					Arrays.stream(b).mapToDouble(Double::parseDouble).toArray()));
+			result = arbitraryEucledianDistance(Arrays.stream(a).mapToDouble(Double::parseDouble).toArray(),
+					Arrays.stream(b).mapToDouble(Double::parseDouble).toArray());
+			distances.add(result);
+			distanceAppendedLines.add(s + "," + result);
 		}
-		return distances;
+		return distances.stream().sorted().limit(n).collect(Collectors.toList());
 	}
 
 	private static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
@@ -66,4 +67,5 @@ public class IOUtility {
 		}
 		return product;
 	}
+
 }
