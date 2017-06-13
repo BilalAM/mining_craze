@@ -39,7 +39,7 @@ public class IOUtility {
 			distances.add(result);
 			distanceAppendedLines.add(s + "," + result);
 		}
-		/**/
+
 		distanceAppendedLines.sort(new Comparator<String>() {
 			public int compare(String o1, String o2) {
 				return Double.valueOf(Arrays.asList(o1.split(",")).get(columnToPredict))
