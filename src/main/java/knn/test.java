@@ -9,9 +9,7 @@ public class test {
 
 	public static void main(String[] args) throws Exception {
 		IOUtility util = new IOUtility();
-		for(String d : IOUtility.getDistances(3, 3)){
-			System.out.println(d);
-		}
+		System.out.println(IOUtility.calculateValue(3, 3));
 		System.out.println("hello");
 	}
 }

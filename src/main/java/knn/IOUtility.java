@@ -34,16 +34,16 @@ public class IOUtility {
 		List<String> fileLines = Files.readAllLines(filePath);
 		List<Double> averages = new ArrayList<>();
 		String lastLine = fileLines.get(fileLines.size() - 1);
+		String[] lastRecord = processString(lastLine, columnToPredict);
 
-		for (String s : fileLines.subList(0, fileLines.size() - 1)) {
+		for (String record : fileLines.subList(0, fileLines.size() - 1)) {
 			double result = 0;
 
-			String[] a = processString(s, columnToPredict);
-			String[] b = processString(lastLine, columnToPredict);
-			result = arbitraryEucledianDistance(Arrays.stream(a).mapToDouble(Double::parseDouble).toArray(),
-					Arrays.stream(b).mapToDouble(Double::parseDouble).toArray());
+			String[] lineRecords = processString(record, columnToPredict);
+			result = arbitraryEucledianDistance(Arrays.stream(lineRecords).mapToDouble(Double::parseDouble).toArray(),
+					Arrays.stream(lastRecord).mapToDouble(Double::parseDouble).toArray());
 			distances.add(result);
-			distanceAppendedLines.add(s + "," + result);
+			distanceAppendedLines.add(record + "," + result);
 		}
 
 		sort(distanceAppendedLines);
