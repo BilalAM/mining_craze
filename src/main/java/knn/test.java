@@ -8,8 +8,8 @@ import java.util.stream.IntStream;
 public class test {
 
 	public static void main(String[] args) throws Exception {
-		IOUtility util = new IOUtility();
-		System.out.println(IOUtility.calculateValue(3, 3));
+		KnnUtility util = new KnnUtility();
+		System.out.println(KnnUtility.calculateValue(3, 3));
 		System.out.println("hello");
 	}
 }
