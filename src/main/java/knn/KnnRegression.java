@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /* File IO Utility Class */
-public class KnnUtility {
+public class KnnRegression {
 
 	private static final Path filePath = Paths.get("datasets/knn_dataset");
 	private static List<Double> distances = new ArrayList<Double>();
