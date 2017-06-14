@@ -22,5 +22,20 @@ public class KnnUtils {
 		List<String> splittedString = Arrays.asList(s.split(",")).subList(0, columnToPredict - 1);
 		return splittedString.toArray(new String[0]);
 	}
+	public static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
+
+		double result = 0;
+		if (upperPoints.length == lowerPoints.length) {
+			for (int i = 0; i < upperPoints.length; i++) {
+				result += KnnUtils.doublePointsProduct(upperPoints[i], lowerPoints[i]);
+			}
+		} else {
+			System.out.println("group points are not equal");
+			return 0.0;
+		}
+
+		// taking root of the whole product at the end to save processing
+		return Math.sqrt(result);
+	}
 
 }

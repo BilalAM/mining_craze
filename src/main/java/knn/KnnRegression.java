@@ -33,7 +33,8 @@ public class KnnRegression {
 			double result = 0;
 
 			String[] lineRecords = KnnUtils.processString(record, columnToPredict);
-			result = arbitraryEucledianDistance(Arrays.stream(lineRecords).mapToDouble(Double::parseDouble).toArray(),
+			result = KnnUtils.arbitraryEucledianDistance(
+					Arrays.stream(lineRecords).mapToDouble(Double::parseDouble).toArray(),
 					Arrays.stream(lastRecord).mapToDouble(Double::parseDouble).toArray());
 			distances.add(result);
 			distanceAppendedLines.add(record + "," + result);
@@ -46,22 +47,6 @@ public class KnnRegression {
 		}
 
 		return KnnUtils.averageOfDistances(averages.toArray(new Double[0]));
-	}
-
-	private static double arbitraryEucledianDistance(double[] upperPoints, double[] lowerPoints) {
-
-		double result = 0;
-		if (upperPoints.length == lowerPoints.length) {
-			for (int i = 0; i < upperPoints.length; i++) {
-				result += KnnUtils.doublePointsProduct(upperPoints[i], lowerPoints[i]);
-			}
-		} else {
-			System.out.println("group points are not equal");
-			return 0.0;
-		}
-
-		// taking root of the whole product at the end to save processing
-		return Math.sqrt(result);
 	}
 
 	private static void sort(List<String> list) {
