@@ -16,7 +16,9 @@ public class IOUtility {
 	private static final Path filePath = Paths.get("datasets/knn_dataset");
 	private static List<Double> distances = new ArrayList<Double>();
 	private static List<String> distanceAppendedLines = new ArrayList<String>();
-
+	private static int _columnToPredict;
+	
+	
 	private static String[] processString(String s, int columnToPredict) {
 		// split the columns BUT dont split the one we need to predict the value
 		// (The "classification" column)
@@ -27,6 +29,7 @@ public class IOUtility {
 	// Main KNN ENGINE
 	public static List<String> getDistances(int n, int columnToPredict) throws Exception {
 
+		_columnToPredict = columnToPredict;
 		List<String> fileLines = Files.readAllLines(filePath);
 		String lastLine = fileLines.get(fileLines.size() - 1);
 		for (String s : fileLines.subList(0, fileLines.size() - 1)) {
@@ -40,13 +43,7 @@ public class IOUtility {
 			distanceAppendedLines.add(s + "," + result);
 		}
 
-		distanceAppendedLines.sort(new Comparator<String>() {
-			public int compare(String o1, String o2) {
-				return Double.valueOf(Arrays.asList(o1.split(",")).get(columnToPredict))
-						.compareTo(Double.valueOf(Arrays.asList(o2.split(",")).get(columnToPredict)));
-			};
-		});
-
+		sort(distanceAppendedLines);
 		return distanceAppendedLines;
 
 	}
@@ -77,6 +74,14 @@ public class IOUtility {
 			product += (d / points.length);
 		}
 		return product;
+	}
+	private static void sort(List<String> list){
+		list.sort(new Comparator<String>() {
+			public int compare(String o1, String o2) {
+				return Double.valueOf(Arrays.asList(o1.split(",")).get(_columnToPredict))
+						.compareTo(Double.valueOf(Arrays.asList(o2.split(",")).get(_columnToPredict)));
+			};
+		});
 	}
 
 }
