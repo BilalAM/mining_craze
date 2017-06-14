@@ -48,8 +48,8 @@ public class IOUtility {
 
 		sort(distanceAppendedLines);
 		for (String value : distanceAppendedLines.stream().limit(n).collect(Collectors.toList())) {
-			Double x = Double.valueOf(Arrays.asList(value.split(",")).get(columnToPredict - 1));
-			averages.add(x);
+			Double doubleValue = Double.valueOf(Arrays.asList(value.split(",")).get(columnToPredict - 1));
+			averages.add(doubleValue);
 		}
 
 		return averageOfDistances(averages.toArray(new Double[0]));
