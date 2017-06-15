@@ -9,7 +9,7 @@ public class test {
 
 	public static void main(String[] args) throws Exception {
 		KnnRegression util = new KnnRegression();
-		System.out.println(KnnRegression.calculateValue(3, 3));
+		System.out.println(KnnRegression.calculateValue(0, 3));
 		System.out.println("hello");
 	}
 }

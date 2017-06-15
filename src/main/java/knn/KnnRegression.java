@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /* File IO Utility Class */
 public class KnnRegression {
 
-	private static final Path filePath = Paths.get("datasets/knn_dataset");
+	private static final Path filePath = Paths.get("datasets/knn_dataset_classification");
 	private static List<Double> distances = new ArrayList<Double>();
 	private static List<String> distanceAppendedLines = new ArrayList<String>();
 	private static int _columnToPredict;
