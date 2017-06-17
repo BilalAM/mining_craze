@@ -18,8 +18,10 @@ public class NaiveUtilsTest {
 		try(BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile()))){
 			while((line = reader.readLine()) != null){
 				List<String> splittedData = Arrays.asList(line.split(","));
+				String classLabel = splittedData.get(splittedData.size()-1);
+				//hashData.put(classLabel, splittedData);
 			}
 		}
+		System.out.println("");
 	}
-
 }
