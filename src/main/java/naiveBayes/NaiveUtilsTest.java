@@ -1,27 +1,47 @@
 package naiveBayes;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Hashtable;
+
 import java.util.List;
 
 public class NaiveUtilsTest {
-	private static final Path filePath = Paths.get("datasets/naive_dataset");
-	
-	private Hashtable<String, List<String>> hashData = new Hashtable<>();
-	
-	public void loadInHash() throws Exception{
-		String line;
-		try(BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile()))){
-			while((line = reader.readLine()) != null){
-				List<String> splittedData = Arrays.asList(line.split(","));
-				String classLabel = splittedData.get(splittedData.size()-1);
-				//hashData.put(classLabel, splittedData);
-			}
-		}
-		System.out.println("");
+
+	public void test() throws Exception {
+		String line = "1,Red,Sports,Domestic,Yes";
+		ClassificationFeature<String, List<String>> classA = new ClassificationFeature<>();
+		classA.setKey("approved");
+		classA.setValue(Arrays.asList(line.split(",")));
+
 	}
+}
+
+class ClassificationFeature<K, V> {
+	private K key;
+	private V value;
+
+	public ClassificationFeature(K key, V value) {
+		this.key = key;
+		this.value = value;
+	}
+
+	public ClassificationFeature() {
+
+	}
+
+	public K getKey() {
+		return key;
+	}
+
+	public void setKey(K key) {
+		this.key = key;
+	}
+
+	public V getValue() {
+		return value;
+	}
+
+	public void setValue(V value) {
+		this.value = value;
+	}
+
 }
