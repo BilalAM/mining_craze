@@ -5,11 +5,12 @@ import java.util.regex.Pattern;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
+import naiveBayes.NaiveUtilsTest;
+
 public class test {
 
 	public static void main(String[] args) throws Exception {
-		KnnRegression util = new KnnRegression();
-		System.out.println(KnnRegression.calculateValue(0, 3));
-		System.out.println("hello");
+		NaiveUtilsTest util = new NaiveUtilsTest();
+		util.test();
 	}
 }
