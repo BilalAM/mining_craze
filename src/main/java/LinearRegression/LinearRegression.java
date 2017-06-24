@@ -37,5 +37,16 @@ public class LinearRegression {
 		}
 		return list;
 	}
+	public static List<Double> getIndependantValues() throws Exception {
+		List<Double> list = new ArrayList<>();
+		String line;
+		try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
+			while ((line = reader.readLine()) != null) {
+				String[] values = line.split(",");
+				list.add(Double.parseDouble(values[1]));
+			}
+		}
+		return list;
+	}
 
 }
