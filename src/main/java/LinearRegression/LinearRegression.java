@@ -21,12 +21,15 @@ public class LinearRegression {
 				.averageOfPoints(getDependantValues().toArray(new Double[0]));
 		double averageIndependantValues = LinearRegressionUtils
 				.averageOfPoints(getIndependantValues().toArray(new Double[0]));
-		
-		double x ;
+
+		// Sum{(X-x)(Y-y)}
+		double x = 0;
 		for (int i = 0; i < getDependantValues().size(); i++) {
-				
-			
+
+			x += ((averageDependantValues - getDependantValues().get(i))
+					* (averageIndependantValues - getIndependantValues().get(i)));
 		}
+
 		String b = "Sum{(X-x)(Y-y)} / Sum(X-x)^2";
 
 		return 0.0;
