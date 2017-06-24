@@ -16,10 +16,19 @@ public class LinearRegression {
 		return y;
 	}
 
-	private static double calcualteB(){
-	/*	double averageDependantValues = LinearRegressionUtils
+	private static double calcualteB() {
+		double averageDependantValues = LinearRegressionUtils
 				.averageOfPoints(getDependantValues().toArray(new Double[0]));
-*/
+		double averageIndependantValues = LinearRegressionUtils
+				.averageOfPoints(getIndependantValues().toArray(new Double[0]));
+		
+		double x ;
+		for (int i = 0; i < getDependantValues().size(); i++) {
+				
+			
+		}
+		String b = "Sum{(X-x)(Y-y)} / Sum(X-x)^2";
+
 		return 0.0;
 	}
 
