@@ -16,9 +16,10 @@ public class LinearRegression {
 		return y;
 	}
 
-	private static double calcualteB() {
-		
-		
+	private static double calcualteB(){
+	/*	double averageDependantValues = LinearRegressionUtils
+				.averageOfPoints(getDependantValues().toArray(new Double[0]));
+*/
 		return 0.0;
 	}
 
@@ -26,25 +27,34 @@ public class LinearRegression {
 		return 0.0;
 	}
 
-	public static List<Double> getDependantValues() throws Exception {
+	public static List<Double> getDependantValues() {
 		List<Double> list = new ArrayList<>();
 		String line;
-		try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
-			while ((line = reader.readLine()) != null) {
-				String[] values = line.split(",");
-				list.add(Double.parseDouble(values[0]));
+		try {
+			try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
+				while ((line = reader.readLine()) != null) {
+					String[] values = line.split(",");
+					list.add(Double.parseDouble(values[0]));
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
-	public static List<Double> getIndependantValues() throws Exception {
+
+	public static List<Double> getIndependantValues() {
 		List<Double> list = new ArrayList<>();
 		String line;
-		try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
-			while ((line = reader.readLine()) != null) {
-				String[] values = line.split(",");
-				list.add(Double.parseDouble(values[1]));
+		try {
+			try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
+				while ((line = reader.readLine()) != null) {
+					String[] values = line.split(",");
+					list.add(Double.parseDouble(values[1]));
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
