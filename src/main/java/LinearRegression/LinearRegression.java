@@ -16,7 +16,7 @@ public class LinearRegression {
 		return y;
 	}
 
-	private static double calcualteB() {
+	public static double calcualteB() {
 		double averageDependantValues = LinearRegressionUtils
 				.averageOfPoints(getDependantValues().toArray(new Double[0]));
 		double averageIndependantValues = LinearRegressionUtils
@@ -24,12 +24,23 @@ public class LinearRegression {
 
 		// Sum{(X-x)(Y-y)}
 		double x = 0;
+	
+		
+		// Sum{(X-x)^2}
+		double y = 0;
+
 		for (int i = 0; i < getDependantValues().size(); i++) {
 
-			x += ((averageDependantValues - getDependantValues().get(i))
-					* (averageIndependantValues - getIndependantValues().get(i)));
+			x += ((averageIndependantValues - getIndependantValues().get(i))
+					* (averageDependantValues - getDependantValues().get(i)));
 		}
 
+		for (int i = 0; i < getIndependantValues().size(); i++) {
+			
+			y += Math.pow((averageIndependantValues - getIndependantValues().get(i)),2);
+		}
+		
+		
 		String b = "Sum{(X-x)(Y-y)} / Sum(X-x)^2";
 
 		return 0.0;
@@ -46,7 +57,7 @@ public class LinearRegression {
 			try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
 				while ((line = reader.readLine()) != null) {
 					String[] values = line.split(",");
-					list.add(Double.parseDouble(values[0]));
+					list.add(Double.parseDouble(values[1]));
 				}
 			}
 		} catch (Exception e) {
@@ -62,7 +73,7 @@ public class LinearRegression {
 			try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
 				while ((line = reader.readLine()) != null) {
 					String[] values = line.split(",");
-					list.add(Double.parseDouble(values[1]));
+					list.add(Double.parseDouble(values[0]));
 				}
 			}
 		} catch (Exception e) {
