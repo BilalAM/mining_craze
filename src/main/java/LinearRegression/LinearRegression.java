@@ -44,12 +44,12 @@ public class LinearRegression {
 		return x / y;
 	}
 
-	private static double calculateA() {
+	public static double calculateA() {
 		
 		// a = y - bx;
 		averageDependantValues = LinearRegressionUtils.averageOfPoints(getDependantValues().toArray(new Double[0]));
 		averageIndependantValues = LinearRegressionUtils.averageOfPoints(getIndependantValues().toArray(new Double[0]));
-		return averageIndependantValues - calcualteB() * averageIndependantValues;
+		return averageDependantValues - calcualteB() * averageIndependantValues;
 	}
 
 	public static List<Double> getDependantValues() {
