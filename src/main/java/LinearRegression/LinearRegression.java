@@ -10,6 +10,8 @@ import java.util.List;
 
 public class LinearRegression {
 	private static Path path = Paths.get("datasets/linear_regression");
+	private static double averageDependantValues;
+	private static double averageIndependantValues;
 
 	public Double calculateValue(double independantValue) {
 		double y = calculateA() + calcualteB() * independantValue;
@@ -17,15 +19,12 @@ public class LinearRegression {
 	}
 
 	public static double calcualteB() {
-		double averageDependantValues = LinearRegressionUtils
-				.averageOfPoints(getDependantValues().toArray(new Double[0]));
-		double averageIndependantValues = LinearRegressionUtils
-				.averageOfPoints(getIndependantValues().toArray(new Double[0]));
+		averageDependantValues = LinearRegressionUtils.averageOfPoints(getDependantValues().toArray(new Double[0]));
+		averageIndependantValues = LinearRegressionUtils.averageOfPoints(getIndependantValues().toArray(new Double[0]));
 
 		// Sum{(X-x)(Y-y)}
 		double x = 0;
-	
-		
+
 		// Sum{(X-x)^2}
 		double y = 0;
 
@@ -36,18 +35,21 @@ public class LinearRegression {
 		}
 
 		for (int i = 0; i < getIndependantValues().size(); i++) {
-			
-			y += Math.pow((getIndependantValues().get(i) - averageIndependantValues),2);
-		}
-		
-		
-		//Sum{(X-x)(Y-y)} / Sum(X-x)^2"
 
-		return x/y;
+			y += Math.pow((getIndependantValues().get(i) - averageIndependantValues), 2);
+		}
+
+		// Sum{(X-x)(Y-y)} / Sum(X-x)^2"
+
+		return x / y;
 	}
 
 	private static double calculateA() {
-		return 0.0;
+		
+		// a = y - bx;
+		averageDependantValues = LinearRegressionUtils.averageOfPoints(getDependantValues().toArray(new Double[0]));
+		averageIndependantValues = LinearRegressionUtils.averageOfPoints(getIndependantValues().toArray(new Double[0]));
+		return averageIndependantValues - calcualteB() * averageIndependantValues;
 	}
 
 	public static List<Double> getDependantValues() {
