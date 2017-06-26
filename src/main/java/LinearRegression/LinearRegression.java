@@ -31,19 +31,19 @@ public class LinearRegression {
 
 		for (int i = 0; i < getDependantValues().size(); i++) {
 
-			x += ((averageIndependantValues - getIndependantValues().get(i))
-					* (averageDependantValues - getDependantValues().get(i)));
+			x += ((getIndependantValues().get(i) - averageIndependantValues)
+					* (getDependantValues().get(i) - averageDependantValues));
 		}
 
 		for (int i = 0; i < getIndependantValues().size(); i++) {
 			
-			y += Math.pow((averageIndependantValues - getIndependantValues().get(i)),2);
+			y += Math.pow((getIndependantValues().get(i) - averageIndependantValues),2);
 		}
 		
 		
-		String b = "Sum{(X-x)(Y-y)} / Sum(X-x)^2";
+		//Sum{(X-x)(Y-y)} / Sum(X-x)^2"
 
-		return 0.0;
+		return x/y;
 	}
 
 	private static double calculateA() {
