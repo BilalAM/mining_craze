@@ -2,6 +2,7 @@ package LinearRegression;
 
 public class test {
 	public static void main(String[] args) {
-		System.out.println(LinearRegression.calculateA());
+		LinearRegression model = new LinearRegression();
+		System.out.println(model.calculateValue(5));
 	}
 }
