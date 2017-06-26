@@ -13,12 +13,12 @@ public class LinearRegression {
 	private static double averageDependantValues;
 	private static double averageIndependantValues;
 
-	public Double calculateValue(double independantValue) {
-		double y = calculateA() + calcualteB() * independantValue;
+	public Double calculateValueAgainst(double independantValue) {
+		double y = calculateA() + calculateB() * independantValue;
 		return y;
 	}
 
-	private static double calcualteB() {
+	private static double calculateB() {
 		averageDependantValues = LinearRegressionUtils.averageOfPoints(getDependantValues().toArray(new Double[0]));
 		averageIndependantValues = LinearRegressionUtils.averageOfPoints(getIndependantValues().toArray(new Double[0]));
 
@@ -49,7 +49,7 @@ public class LinearRegression {
 		// a = y - bx;
 		averageDependantValues = LinearRegressionUtils.averageOfPoints(getDependantValues().toArray(new Double[0]));
 		averageIndependantValues = LinearRegressionUtils.averageOfPoints(getIndependantValues().toArray(new Double[0]));
-		return averageDependantValues - calcualteB() * averageIndependantValues;
+		return averageDependantValues - calculateB() * averageIndependantValues;
 	}
 
 	private static List<Double> getDependantValues() {
