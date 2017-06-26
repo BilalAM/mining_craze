@@ -4,6 +4,7 @@ Here you will find different data mining algorithms ! Regressions , classificati
 
 ## <a name="list-index">List Of Mining Communities living on this Planet</a>
 * [knn](#knn)
+* [Linear Regression](#linearReg)
 * [Naive Bayes](#naive)
 * [Aprior (Market Basket Analysis)](#aprior)
 
@@ -12,6 +13,7 @@ Here you will find different data mining algorithms ! Regressions , classificati
 ## <a name="knn">Knn Algorithm</a>
 
 
+## <a name="linearReg">Linear Regression</a>
 
 
 ## <a name="naive">Naive Classifiers</a>
@@ -21,3 +23,4 @@ Here you will find different data mining algorithms ! Regressions , classificati
 
 
 **Note:** This Project is still underway
+
